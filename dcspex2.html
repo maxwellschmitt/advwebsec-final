@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <!--<meta http-equiv="content-security-policy" content="script-src 'unsafe-inline' 'unsafe-eval'" />-->
+    <title>Metatag CSP demo</title>
+    <script>
+      function protect() {
+        let meta = document.createElement('meta');
+        meta.setAttribute('http-equiv', 'content-security-policy');
+        meta.setAttribute('content', "script-src 'none'");
+        let myh = document.querySelector('head');
+        myh.insertBefore(meta, myh.firstElementChild);
+        
+        let meta2 = document.createElement('meta');
+        meta2.setAttribute('http-equiv', 'refresh');
+        meta2.setAttribute('content', '3');
+        myh.insertBefore(meta2, myh.firstElementChild);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Hi</h1>
+    <input type="text" id="mal" />
+    <button onclick="eval(document.querySelector('#mal').value);">Submit</button>
+    <br><br><br>
+    <button onclick="protect();">Protect!</button>
+  </body>
+</html>

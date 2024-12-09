@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Metatag CSP demo</title>
+  </head>
+  <body>
+    <h1>Hi</h1>
+    <input type="text" id="mal" />
+    <button onclick="eval(document.querySelector('#mal').value);">Submit</button>
+    <br><br><br>
+    <button onclick="
+      let meta = document.createElement('meta');
+      meta.setAttribute('http-equiv', 'content-security-policy');
+      meta.setAttribute('content', 'script-src \'none\'');
+      let myh = document.querySelector('head');
+      myh.insertBefore(meta, myh.firstElementChild);
+    ">Protect!</button>
+  </body>
+</html>
